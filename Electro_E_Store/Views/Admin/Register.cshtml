@@ -1,0 +1,124 @@
+﻿@model Electro_E_Store.Models.tb_Admin
+
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8">
+    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Templates/Admin/vendors/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Templates/Admin/vendors/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Templates/Admin/vendors/images/favicon-16x16.png">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/Templates/Admin/vendors/styles/core.css">
+    <link rel="stylesheet" type="text/css" href="/Templates/Admin/vendors/styles/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/Templates/Admin/vendors/styles/style.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119386393-1');
+    </script>
+</head>
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="@Url.Action("Login", "Admin")">
+                    <img src="/Templates/Admin/vendors/images/deskapp-logo.svg" alt="">
+                </a>
+            </div>
+            <div class="login-menu">
+                <ul>
+                    <li><a href="@Url.Action("Login", "Admin")">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img src="/Templates/Admin/vendors/images/register-img.png" alt="">
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-box bg-white box-shadow border-radius-10">
+                        <div class="login-title">
+                            <h2 class="text-center text-primary">Login To DeskApp</h2>
+                        </div>
+                        @using (Html.BeginForm("Register", "Admin", FormMethod.Post))
+                        {
+                            @Html.ValidationMessageFor(model => model.admin_name, "", new { @class = "text-danger small font-weight-bold" })
+                            <div class="input-group custom">
+                                @*<input type="text" class="form-control form-control-lg" placeholder="username">*@
+                                @Html.TextBoxFor(model => model.admin_name, "", new { @type = "text", @placeholder = "username", @class = "form-control form-control-lg" })
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.admin_email, "", new { @class = "text-danger small font-weight-bold" })
+                            <div class="input-group custom">
+                                @*<input type="text" class="form-control form-control-lg" placeholder="Username">*@
+                                @Html.TextBoxFor(model => model.admin_email, "", new { @type = "email", @placeholder = "Email Address", @class = "form-control form-control-lg" })
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="icon-copy dw dw-email1"></i></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.a_password, "", new { @class = "text-danger small font-weight-bold" })
+                            <div class="input-group custom">
+                                @*<input type="password" class="form-control form-control-lg" placeholder="**********">*@
+                                @Html.TextBoxFor(model => model.a_password, "", new { @type = "password", @placeholder = "***********", @class = "form-control form-control-lg" })
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.contact_no, "", new { @class = "text-danger small font-weight-bold" })
+                            <div class="input-group custom">
+                                @*<input type="text" class="form-control form-control-lg" placeholder="Username">*@
+                                @Html.TextBoxFor(model => model.contact_no, "", new { @type = "tel", @placeholder = "Contact no. as 0333-1234567", @class = "form-control form-control-lg" })
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="icon-copy dw dw-phone-call"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-group mb-0">
+
+                                        @*use code for form submit*@
+                                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Register">
+                                    </div>
+                                    <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
+                                    <div class="input-group mb-0">
+                                        <a class="btn btn-outline-primary btn-lg btn-block" href="@Url.Action("Login", "Admin")">Login To Open Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="/Templates/Admin/vendors/scripts/core.js"></script>
+    <script src="/Templates/Admin/vendors/scripts/script.min.js"></script>
+    <script src="/Templates/Admin/vendors/scripts/process.js"></script>
+    <script src="/Templates/Admin/vendors/scripts/layout-settings.js"></script>
+</body>
+
+</html>
