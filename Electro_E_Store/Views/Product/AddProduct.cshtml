@@ -5,211 +5,113 @@
     Layout = "~/Views/Shared/_LayoutBasic_Admin.cshtml";
 }
 
+@if(TempData["error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@TempData["error"]</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 
 <div class="pd-20 card-box mb-30">
     <div class="clearfix">
         <div class="pull-left">
-            <h4 class="text-blue h4">Add Product</h4>
-            <p class="mb-30">All bootstrap element classies</p>
+            <h4 class="text-blue h4">Add New Product</h4>
+            <p class="mb-30">Provide the detail to add new product.</p>
         </div>
         <div class="pull-right">
-            <a href="#form-grid-form" class="btn btn-primary btn-sm scroll-click" rel="content-y" data-toggle="collapse" role="button"><i class="fa fa-code"></i> All Products</a>
+            <a href="#" class="btn btn-primary btn-sm scroll-click"><i class="icon-copy ion-pricetag"></i>&nbsp; All Products</a>
         </div>
     </div>
     @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-<form>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Product Name</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextBoxFor(model => model.product_name, new { @type = "text", @placeholder = "Product Name", @class = "form-control" })
+        @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Product Name</label>
+                @Html.TextBoxFor(model => model.product_name, new { @type = "text", placeholder = "Product Name", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Model</label>
+                @Html.TextBoxFor(model => model.model, new { @type = "text", placeholder = "Product Model", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.model, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
         </div>
     </div>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Model</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextBoxFor(model => model.model, new { @type = "text", @placeholder = "Product Model", @class = "form-control" })
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Manufacturer</label>
+                @Html.TextBoxFor(model => model.manufacturer, new { @type = "text", placeholder = "Manufacturer", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.manufacturer, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Price</label>
+                @Html.TextBoxFor(model => model.price, new { @type = "number", placeholder = "Product Price", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
         </div>
     </div>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Manufacturer</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextBoxFor(model => model.manufacturer, new { @type = "text", @placeholder = "Manufacturer", @class = "form-control" })
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Category</label>
+                @Html.DropDownListFor(model => model.category_id, ViewBag.Categories as SelectList, "Select Category", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Stock</label>
+                @Html.TextBoxFor(model => model.stock, new { @type = "number", placeholder = "Product Stock", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
         </div>
     </div>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Price</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextBoxFor(model => model.price, new { @type = "number", @placeholder = "Product Price", @class = "form-control", @value = "0" })
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <div class="form-group">
+                <label>Upload Image</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="fileBase" name="fileBase" onchange="ChangeShownImage(event)" />
+                    <label class="custom-file-label" for="fileBase">Product Image</label>
+                   @* @Html.ValidationMessageFor(model => model.product_img, "", new { @class = "text-danger small font-weight-bold" })*@
+                </div>
+                
+            </div>
+        </div>
 
+        <script>function ChangeShownImage(event) {
+                    document.getElementById("shownImage").src = URL.createObjectURL(event.target.files[0]);
+                }</script>
+        <div class="col-sm-12 col-md-2">
+            <img src="@Html.DisplayFor(model => model.product_img)" style="max-height: 200px" id="shownImage" />
         </div>
     </div>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Stock</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextBoxFor(model => model.stock, new { @type = "number", @placeholder = "Product Stock", @class = "form-control" })
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="form-group">
+                <label>Description</label>
+                @Html.TextAreaFor(model => model.description, new { @type = "text", placeholder = "Product Description", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger small font-weight-bold" })
+            </div>
         </div>
     </div>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Image</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextBoxFor(model => model.product_img, new { @type = "file", @placeholder = "Product Image", @class = "form-control" })
+    <div class="clearfix">
+        <div class="pull-right">
+            <button class="btn btn-primary btn-sm scroll-click" type="submit"><i class="icon-copy ion-pricetag"></i>&nbsp; Add Product</button>
         </div>
     </div>
-    <div class="form-group row justify-content-center">
-        <label class="col-sm-12 col-md-2 col-form-label">Description</label>
-        <div class="col-sm-12 col-md-6">
-            @*<input type="text" class="form-control">*@
-            @Html.TextAreaFor(model => model.description, new { @type = "text", @placeholder = "Product Description", @class = "form-control" })
-        </div>
-    </div>
-</form>
     }
 
-    @*<div class="collapse collapse-box" id="form-grid-form">
-                <div class="code-box">
-                    <div class="clearfix">
-                        <a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left" data-clipboard-target="#form-grid"><i class="fa fa-clipboard"></i> Copy Code</a>
-                        <a href="#form-grid-form" class="btn btn-primary btn-sm pull-right" rel="content-y" data-toggle="collapse" role="button"><i class="fa fa-eye-slash"></i> Hide Code</a>
-                    </div>
-                    <pre><code class="xml copy-pre" id="form-grid">
-        <form>
-                    <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-4</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-4 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-4</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-4 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-4</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                    <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-3</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-3 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-3</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-3 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-3</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-3 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-3</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                    <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-6</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-6</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                    <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-6</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-3 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-3</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-3 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-3</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                    <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-12</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-                    <div class="row">
-                    <div class="col-md-2 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-2</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-2 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-2</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-2 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-2</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-2 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-2</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-2 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-2</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-                    <div class="col-md-2 col-sm-12">
-                    <div class="form-group">
-                    <label>col-md-2</label>
-                    <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-        </form>
-                                    </code></pre>
-                </div>
-            </div>*@
 </div>
 
 
