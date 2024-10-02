@@ -651,7 +651,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DB_ShopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DB_ShopEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_Admin" EntityType="Self.tb_Admin" />
           <EntitySet Name="tb_Categories" EntityType="Self.tb_Categories" />
           <EntitySet Name="tb_Comment" EntityType="Self.tb_Comment" />
@@ -723,7 +723,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DB_ShopModelStoreContainer" CdmEntityContainer="DB_ShopEntities">
+        <EntityContainerMapping StorageEntityContainer="DB_ShopModelStoreContainer" CdmEntityContainer="DB_ShopEntities1">
           <EntitySetMapping Name="tb_Admin">
             <EntityTypeMapping TypeName="DB_ShopModel.tb_Admin">
               <MappingFragment StoreEntitySet="tb_Admin">

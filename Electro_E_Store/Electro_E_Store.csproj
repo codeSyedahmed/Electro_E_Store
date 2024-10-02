@@ -98,15 +98,15 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\DbShop_Entities.Context.tt">
+    <Content Include="Models\DB_ShopEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbShop_Entities.edmx</DependentUpon>
-      <LastGenOutput>DbShop_Entities.Context.cs</LastGenOutput>
+      <DependentUpon>DB_ShopEntities.edmx</DependentUpon>
+      <LastGenOutput>DB_ShopEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DbShop_Entities.tt">
+    <Content Include="Models\DB_ShopEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbShop_Entities.edmx</DependentUpon>
-      <LastGenOutput>DbShop_Entities.cs</LastGenOutput>
+      <DependentUpon>DB_ShopEntities.edmx</DependentUpon>
+      <LastGenOutput>DB_ShopEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Templates\Admin\src\plugins\apexcharts\apexcharts.min.js" />
     <Content Include="Templates\Admin\src\plugins\bootstrap-tagsinput\bootstrap-tagsinput.css" />
@@ -301,59 +301,59 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DbShop_Entities.Context.cs">
+    <Compile Include="Models\DB_ShopEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbShop_Entities.Context.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DbShop_Entities.cs">
+    <Compile Include="Models\DB_ShopEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DbShop_Entities.Designer.cs">
+    <Compile Include="Models\DB_ShopEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbShop_Entities.edmx</DependentUpon>
+      <DependentUpon>DB_ShopEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\tb_Admin.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Categories.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Comment.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Orders.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Orders_Summary.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Products.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Review.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_User.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_Wishlist.cs">
-      <DependentUpon>DbShop_Entities.tt</DependentUpon>
+      <DependentUpon>DB_ShopEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\DbShop_Entities.edmx">
+    <EntityDeploy Include="Models\DB_ShopEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbShop_Entities.Designer.cs</LastGenOutput>
+      <LastGenOutput>DB_ShopEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DbShop_Entities.edmx.diagram">
-      <DependentUpon>DbShop_Entities.edmx</DependentUpon>
+    <Content Include="Models\DB_ShopEntities.edmx.diagram">
+      <DependentUpon>DB_ShopEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutBasic_Admin.cshtml" />

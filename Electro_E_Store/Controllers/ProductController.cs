@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -106,15 +105,15 @@ namespace Electro_E_Store.Controllers
             }
         }
 
-        private Dictionary<string, string> UploadImage(HttpPostedFileBase file, string productFileName = "")
+        private Dictionary<string, string> UploadImage(HttpPostedFileBase file)
 		{
             Dictionary<string, string> result = new Dictionary<string, string>();
             if (file != null && file.ContentLength > 0)
 			{
-                string filename = Path.GetFileNameWithoutExtension(file.FileName);
+                string filename = Path.GetFileName(file.FileName);
                 filename = "~/UploadImages/" + filename;
 
-				if (fileALreadyExist(filename))
+                if (fileALreadyExist(filename))
 				{
                     result.Add("error", "Another file with same name already exists, Choose different or rename your file!");
                     return result;
@@ -126,14 +125,13 @@ namespace Electro_E_Store.Controllers
 				{
 					try
 					{
-                        filename += extension;
                         string path = Server.MapPath(filename);
                         file.SaveAs(path);
 
-						if (productFileName != "")
-						{
-							DeleteImage(productFileName);
-						}
+						//if (productFileName != "")
+						//{
+						//	DeleteImage(productFileName);
+						//}
 
 						result.Add("success", filename);
 					}

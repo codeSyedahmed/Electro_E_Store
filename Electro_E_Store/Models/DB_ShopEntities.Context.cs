@@ -9,7 +9,6 @@
 
 namespace Electro_E_Store.Models
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     

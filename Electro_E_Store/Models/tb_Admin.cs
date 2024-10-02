@@ -11,9 +11,8 @@ namespace Electro_E_Store.Models
 {
     using System;
     using System.Collections.Generic;
-	using System.ComponentModel.DataAnnotations;
-
-	public partial class tb_Admin
+    
+    public partial class tb_Admin
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_Admin()
@@ -24,22 +23,11 @@ namespace Electro_E_Store.Models
             this.tb_Products = new HashSet<tb_Products>();
             this.tb_User = new HashSet<tb_User>();
         }
-
+    
         public int admin_id { get; set; }
-        [Required(ErrorMessage = "Please enter your name.")]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "Name at least 3 characters and cannot be longer than 30 characters")]
         public string admin_name { get; set; }
-        [Required(ErrorMessage = "Please enter your email.")]
-        [StringLength(50, MinimumLength = 10, ErrorMessage = "Email address at least 10 characters and cannot be longer than 50 characters")]
-        [RegularExpression(@"[a-z]+[0-9]+@[a-z]+\.[a-z]{2,3}", ErrorMessage = "Correct format is: abc123@gmail.com")]
         public string admin_email { get; set; }
-        [Required(ErrorMessage = "Please enter your password.")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "Password at least 3 characters and cannot be longer than 20 characters")]
         public string a_password { get; set; }
-
-        [Required(ErrorMessage = "Please enter your contact number.")]
-        [StringLength(12, MinimumLength = 1, ErrorMessage = "Contact number cannot be longer than 12 characters")]
-        [RegularExpression(@"[0][3][0-9]{2}[\-]?[0-9]{7}", ErrorMessage = "Correct format is: 0333(-)3333333.")]
         public string contact_no { get; set; }
         public Nullable<System.DateTime> join_date { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }

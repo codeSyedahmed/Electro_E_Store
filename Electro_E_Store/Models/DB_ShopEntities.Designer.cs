@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Practice Work\C# Dot Net\Electro_E_Store\Electro_E_Store\Models\DbShop_Entities.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Practice Work\C# Dot Net\Electro_E_Store\Electro_E_Store\Models\DB_ShopEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
