@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,6 +19,10 @@ namespace Electro_E_Store.Controllers
         [HttpGet]
         public ActionResult AddProduct()
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             ViewBag.Categories = new SelectList(db.tb_Categories, "category_id", "category_name");
             return View();
         }
@@ -28,20 +33,20 @@ namespace Electro_E_Store.Controllers
             ViewBag.Categories = new SelectList(db.tb_Categories, "category_id", "category_name");
             if (ModelState.IsValid)
 			{
-    //            var productExists = db.tb_Products.Any(x => x.product_name.Equals(products.product_name));
-				//if (productExists)
-				//{
-    //                ModelState.AddModelError("product_name", "Product name already exists");
-    //                return View(products);
-    //            }
-    //            var modelExists = db.tb_Products.Any(x => x.model.Equals(products.model));
-    //            if (modelExists)
-    //            {
-    //                ModelState.AddModelError("model", "Model number already registered");
-    //                return View(products);
-    //            }
+				var productExists = db.tb_Products.Any(x => x.product_name.Equals(products.product_name));
+				if (productExists)
+				{
+					ModelState.AddModelError("product_name", "Product name already exists");
+					return View(products);
+				}
+				var modelExists = db.tb_Products.Any(x => x.model.Equals(products.model));
+				if (modelExists)
+				{
+					ModelState.AddModelError("model", "Model number already registered");
+					return View(products);
+				}
 
-                Dictionary<string, string> fileUpload = UploadImage(fileBase);
+				Dictionary<string, string> fileUpload = UploadImage(fileBase);
 				if (fileUpload.ContainsKey("success"))
 				{
                     products.product_img = fileUpload["success"];
@@ -61,12 +66,6 @@ namespace Electro_E_Store.Controllers
             }
             return View(products);
         }
-
-        //      private Dictionary<string, string> UploadImage(HttpPostedFileBase imageFile, string productFileName = "")
-        //{
-        //          Dictionary<string, string> result = new Dictionary<string, string>();
-
-        //}
 
         private bool DeleteImage(string filename)
         {

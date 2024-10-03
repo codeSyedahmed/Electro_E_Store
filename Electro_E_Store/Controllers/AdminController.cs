@@ -69,7 +69,7 @@ namespace Electro_E_Store.Controllers
             }
 
             // in case of error
-            ModelState.AddModelError("InvalidLogin", "invalid email or password or perhaps you are not a verified user!");
+            ModelState.AddModelError("InvalidLogin", "invalid email or password!");
             return View(login);
         }
 
